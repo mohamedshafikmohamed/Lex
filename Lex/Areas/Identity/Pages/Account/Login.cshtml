@@ -1,0 +1,79 @@
+﻿@page
+@model LoginModel
+
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+}
+
+
+
+
+<div class="container-login100" style="background-image: url('/images/bg-01.jpg');">
+    <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+        <form id="account" method="post">
+            <span class="login100-form-title p-b-37">
+                Welcome To Lex
+            </span>
+
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="wrap-input100 validate-input m-b-20">
+
+                <input asp-for="Input.Email" class="input100" placeholder="username or email" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-25">
+
+                <input asp-for="Input.Password" class="input100" placeholder="password" />
+
+            </div>
+            <div class="wrap-input100 validate-input m-b-25">
+                <div class="checkbox">
+                    <label asp-for="Input.RememberMe">
+                        <input asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+            </div>
+
+            <div class="container-login100-form-btn">
+                <button type="submit" class="login100-form-btn">
+                    Sign In
+                </button>
+            </div>
+            <br />
+            <div class="container-login100-form-btn">
+                <a asp-page="./Register">Sign up</a>
+
+
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+<!--===============================================================================================-->
+<script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/vendor/bootstrap/js/popper.js"></script>
+<script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/vendor/daterangepicker/moment.min.js"></script>
+<script src="~/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="~/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->

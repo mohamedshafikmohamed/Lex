@@ -1,0 +1,190 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Web
+@using Lex.Data
+@inject UserManager<Application_user> UserManager
+
+    <div class="sections">
+
+        <!--Category-->
+        <span class="text" style="font-weight:600;">Category</span>
+        <br />
+        <ul class="" style=" text-decoration:none; list-style-type: none;">
+            @{ fill_enum category2 = new fill_enum();
+                int c = 0;
+                foreach (var item in category2.categories)
+                {
+
+                    <li style="display:block; ">
+                        <form style="display:inline; " method="post" asp-action="search_by_category" asp-controller="Home">
+
+                            <input type="hidden" value="@item" name="selected_category" />
+
+                            <button class=" button_link " type="submit">
+
+
+
+                                <i class="@category2.icon_classes[c]"></i>
+
+                                <span class="text"> @item</span>
+
+
+                            </button>
+
+                        </form>
+                    </li>
+                    c++;
+                }
+            }
+        </ul>
+        <!--price-->
+        <br />
+        <form style="display:inline; " method="post" asp-action="search_by_price" asp-controller="Home" id="price">
+            <span class="text" style="font-weight:600;"> Price</span>
+
+            <br />
+
+
+            <input type="hidden" value="0" name="min" />
+            <input type="hidden" value="10" name="max" />
+            <button class=" button_link " type="submit">
+                <span class="text"> Under $10</span>
+            </button>
+            <br />
+        </form>
+        <form style="display:inline; " method="post" asp-action="search_by_price" asp-controller="Home">
+            <input type="hidden" value="10" name="min" />
+            <input type="hidden" value="30" name="max" />
+            <button class=" button_link " type="submit">
+                <span class="text">$10 to $30</span>
+            </button>
+            <br />
+        </form>
+        <form style="display:inline; " method="post" asp-action="search_by_price" asp-controller="Home">
+            <input type="hidden" value="30" name="min" />
+            <input type="hidden" value="50" name="max" />
+            <button class=" button_link " type="submit">
+                <span class="text">$30 to $50</span>
+            </button>
+            <br />
+        </form>
+        <form style="display:inline; " method="post" asp-action="search_by_price" asp-controller="Home">
+            <input type="hidden" value="50" name="min" />
+            <input type="hidden" value="900000000" name="max" />
+            <button class=" button_link " type="submit">
+                <span class="text">$50 & above</span>
+            </button>
+
+
+
+        </form>
+        <br />
+        <form style="display:inline; " method="post" asp-action="search_by_price" asp-controller="Home">
+            <input type="text" maxlength="9" placeholder="$ Min" id="low_price" name="min" aria-label="Min" style=" font-family: SourceSansPro-Bold; font-size: 12px;   color: #4b2354;   line-height: 1.2;   display: inline;    width: 25%; height: 30px; background: transparent; padding: 0 5px 0 5px; ">
+            <input type="text" width="40" maxlength="9" id="high-price" placeholder="$ Max" name="max" class="min_max" style=" font-family: SourceSansPro-Bold; font-size: 12px;   color: #4b2354;  line-height: 1.2;   display: inline;    width: 25%; height: 30px; background: transparent; padding: 0 5px 0 5px; ">
+            <input class="a-button-input" type="submit" value="Go" aria-labelledby="a-autoid-4-announce" style="width:20%; height: 28px; ">
+        </form>
+        <!--Seller-->
+        <br />
+        @{
+
+            var s = await UserManager.GetUsersInRoleAsync("store");
+
+
+
+
+
+
+
+
+            <form style="display:inline; " method="post" asp-action="search_by_seller" asp-controller="Home">
+                <span class="text" style="font-weight:600;"> Seller</span>
+
+                <br />
+
+
+                
+                <input type="hidden" value="@s[1].name" name="seller_name" />
+                <button class=" button_link " type="submit">
+                    <span class="text">@s[1].name</span>
+                </button>
+                <br />
+                <!---->
+            </form>
+            <form style="display:inline; " method="post" asp-action="search_by_seller" asp-controller="Home">
+                
+                <input type="hidden" value="@s[0].name" name="seller_name" />
+                <button class=" button_link " type="submit">
+                    <span class="text">@s[0].name</span>
+                </button>
+                <br />
+            </form>
+            <form style="display:inline; " method="post" asp-action="search_by_seller" asp-controller="Home">
+                
+                <input type="hidden" value="@s[2].name" name="seller_name" />
+                <button class=" button_link " type="submit">
+                    <span class="text">@s[2].name</span>
+                </button>
+                <br />
+            </form>
+            <form style="display:inline; " method="post" asp-action="search_by_price" asp-controller="Home">
+                <input type="hidden" value="30" name="min" />
+                <input type="hidden" value="50" name="max" />
+                <button class=" button_link " type="submit">
+                    <span class="text">@s[3].name</span>
+                </button>
+                <br />
+            </form>
+
+        }
+      
+
+
+  
+        <!--discount-->
+        <form style="display:inline; " method="post" asp-action="search_by_offer_precent" asp-controller="Home">
+            <span class="text" style="font-weight:600;"> discount</span>
+
+            <br />
+
+
+           
+            <input type="hidden" value="10" name="offer_precent" />
+            <button class=" button_link " type="submit">
+                <span class="text"> 10% Off or More</span>
+            </button>
+            <br />
+        </form>
+        <form style="display:inline; " method="post" asp-action="search_by_offer_precent" asp-controller="Home">
+            
+            <input type="hidden" value="20" name="offer_precent" />
+            <button class=" button_link " type="submit">
+                <span class="text">20% Off or More</span>
+            </button>
+            <br />
+        </form>
+        <form style="display:inline; " method="post" asp-action="search_by_offer_precent" asp-controller="Home">
+           
+            <input type="hidden" value="30" name="offer_precent" />
+            <button class=" button_link " type="submit">
+                <span class="text">30% Off or More</span>
+            </button>
+            <br />
+        </form>
+        <form style="display:inline; " method="post" asp-action="search_by_offer_precent" asp-controller="Home">
+            <input type="hidden" value="50" name="offer_precent" />
+           
+            <button class=" button_link " type="submit">
+                <span class="text">50% Off or More</span>
+            </button>
+
+
+
+        </form>
+        <br />
+
+       
+    </div>
+
+
+
+

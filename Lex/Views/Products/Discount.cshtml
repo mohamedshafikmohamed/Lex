@@ -1,0 +1,58 @@
+﻿@model Lex.Models.Discount_viewmodel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.product.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.product.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.product.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.product.Price)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.product.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.product.Category)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.product.photo)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/images/@Model.product.photo" width="60" height="70" />
+        </dd>
+    </dl>
+</div>
+@{
+    if (Model.product.NewPrice == 0)
+    {
+        <form method="post" asp-action="Discount" asp-controller="Products">
+            <input type="hidden" value="@Model.product.Id" name="id" />
+            <input type="text" class="" placeholder=" Discount %" asp-for="@Model.discount" />
+            <input class=" button_link " value="Create Discount" type="submit">
+        </form>
+    }
+    else
+    {
+        <form method="post" asp-action="RemoveDiscount" asp-controller="Products">
+            <input type="hidden" value="@Model.product.Id" name="id" />
+            <input class=" btn btn-danger " value="Remove Discount" type="submit">
+            </form>
+            }
+            }
+
+

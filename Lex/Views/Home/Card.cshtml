@@ -1,0 +1,132 @@
+﻿@model OrderModel
+@inject UserManager<Application_user> _UserManager
+<style>
+    td {
+        font-weight: 500;
+        font-size: 14px;
+    }
+    th {
+        color: #8e8e93;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1.14;
+        text-transform: uppercase;
+    }
+    .spanprice {
+        color: #f68b1e;
+        font-size: 1.47em;
+        font-weight: 500;
+    }
+
+    p {
+        font-size: 1.37em;
+        font-weight: 500;
+        position: absolute;
+        left: 1100px;
+    }
+    .totalprice {
+        color: #f68b1e;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1.14;
+    }
+</style>
+<h1>Cart (@Model.orders.Count items)</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Item
+            </th>
+            <th>
+                Seller
+            </th>
+            <th>
+
+                @Html.DisplayNameFor(model => model.products[0].Name)
+            </th>
+            <th>
+                QUANTITY
+            </th>
+            <th>
+                UNIT PRICE
+            </th>
+
+            <th>
+                SUBTOTAL
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int c = 0,total_orders_price=0;
+            foreach (var item in Model.products)
+            {
+                <tr>
+                    <td>
+                        <img src="~/images/@item.photo" width="50" height="60" />
+
+
+                    </td>
+                    <td >
+                        @{
+                            var x = Model.products[c].ShopID;
+                            var seller = await _UserManager.GetUserAsync(User);
+
+
+                        }
+                        @seller.name
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.orders[c].Quantity)
+                    </td>
+                    @{ if (item.NewPrice == 0)
+                        {
+                            <td>
+                               $ @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td class="totalprice">
+                                @{ var total_price = Model.products[c].Price * Model.orders[c].Quantity;
+                                    total_orders_price += Convert.ToInt32(total_price);
+                                }
+                               $ @total_price
+
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                              $  @Html.DisplayFor(modelItem => item.NewPrice)
+                            </td>
+                            <td class="totalprice">
+                                @{ var total_price = Model.products[c].NewPrice * Model.orders[c].Quantity;
+                                    total_orders_price += Convert.ToInt32(total_price);
+                                }
+                              $  @total_price
+                            </td>
+
+                        }
+
+
+
+                        <td>
+                            <form method="post" asp-action="RemovefromCard">
+                                <input type="hidden" value="@Model.orders[c].Id" name="OrderId" />
+                                <button type="submit" style="text-transform: uppercase; font-weight: 500; color: #f68b1e;"><i class="fa fa-trash"></i> &nbsp; REMOVE</button>
+                            </form>
+                        </td>
+                        c++;
+                    }
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<p>Total: <span class="spanprice">$ @total_orders_price</span></p>

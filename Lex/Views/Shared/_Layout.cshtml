@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Lex</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/site.css" type="text/css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link rel="icon" type="images/png" href="images/icons/favicon.ico" />
+    <script src="~/vendor/jquery/jquery-3.5.1.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link href='https://css.gg/laptop.css' rel='stylesheet'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/util.css">
+
+    <link href="~/css/navbar.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/css/main.css">
+
+    <style>
+
+        #btnaddtocart {
+            background: #f68b1e;
+            width: 100%;
+            font-size: .75rem;
+            transform: translate3d(0, 0, 0);
+            padding-left: 16px;
+            padding-bottom: 8px;
+            padding-right: 16px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            padding-top: 8px;
+            color: #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 500;
+            border: 0;
+            border-radius: 4px;
+            box-sizing: border-box;
+            text-indent: 0px;
+            text-shadow: none;
+            
+            align-items: flex-start;
+        
+          
+        }
+        #low_price {
+            border: 1px solid #808080;
+            text-align: left;
+            border-radius: 6px;
+        }
+
+            #low_price:hover {
+                border-color: #f68b1e;
+            }
+
+        #high-price {
+            border: 1px solid #808080;
+            text-align: left;
+            border-radius: 6px;
+        }
+
+        .shoping_icon:hover {
+            color: #f68b1e;
+        }
+
+        .dropdown-item:hover {
+            color: #f68b1e;
+        }
+
+        #high-price:hover {
+            border-color: #f68b1e;
+        }
+
+        .a-button-input {
+            border: 1px solid #808080;
+            border-radius: 6px;
+        }
+
+            .a-button-input:hover {
+                border-color: #f68b1e;
+            }
+
+        body, html {
+            background-color: #fff;
+        }
+    </style>
+
+    
+</head>
+<body>
+
+    <header>
+
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="nav-link br" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-shopping-cart shoping_icon" style="font-size:22px;color:aliceblue"></i></a>
+                <h2><a class="nav-link br" asp-area="" asp-controller="Home" asp-action="Index">Lex</a></h2>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                    <partial name="_LoginPartial" />
+
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light2" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light2" asp-area="" asp-controller="Home" asp-action="Privacy">Contact Us</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle nav-link text-light2" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <button class=" dropdown-item " type="submit">bbb</button>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        <li class="navbar-logo mx-auto col-lg-6 col-md-6 col-xl-6 ">
+                            <div class="nav-searc" style="width:350px;">
+                                <form class="form-inline " method="post" asp-action="search" asp-controller="Home">
+                                    <input class="form-control mr-sm-2   " name="search_input" id="s" style="background:#ded1d1; border-radius:20px; font-family:Calibri; width:300px; " type="search" placeholder="What are you looking for ?" aria-label="Search">
+                                    <button class="search-button my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+
+
+
+                </div>
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <div class="container" style="min-height:800px;  margin-top:100px;  margin-bottom:200px; width:100%;margin-left:200px;">
+
+        @RenderBody()
+        <div id="bb" style="background-color:aqua; width:555px;">fgfgfgfgf</div>
+        <button id="b1">click</button>
+    </div>
+
+    <footer class="border-top footer text-muted  footer-distributed border-top footer text-muted">
+
+        <div class="footer-left">
+
+            <h3>Shopping Easy With<span>Lex</span></h3>
+
+            <p class="footer-links">
+                <a asp-action="Index">Home</a>
+                ·
+
+
+                <a href="#price">Pricing</a>
+                ·
+
+
+                <a href="#">Contact</a>
+            </p>
+
+            <p class="footer-company-name">Lex &copy; 2020</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>21 Shubra Street</span> Cairo, Egypt</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>01129274164</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@company.com">Lex_447@Gmail.com</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+
+
+            <div class="footer-icons">
+
+                <a href="https://www.facebook.com/" style="background:#3B5998; border-radius:50%;"><i style="padding:3px;" class="fa fa-facebook"></i></a>
+                <a style="background:#0082ca; border-radius:50%;" href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_top_card%3BnBiPznyIRJe473N0WFnh%2Fg%3D%3D"><i class="fa fa-linkedin"></i></a>
+                <a style="background:#dd4b39; border-radius:50%; color: #fff; " href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_top_card%3BnBiPznyIRJe473N0WFnh%2Fg%3D%3D"><i class=" fa fa-google"></i></a>
+                <a style="background:black; border-radius:50%; color: #fff;" href="https://github.com/mohamedshafikmohamed?tab=repositories"><i class="fa fa-github"></i></a>
+
+            </div>
+
+        </div>
+
+    </footer>
+    <script src="~/js/JavaScript.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

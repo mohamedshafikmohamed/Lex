@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Lex.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+           
+         
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.photo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            @{ if (item.NewPrice == 0)
+                {
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+                }
+                else
+                {
+            <td>
+                @Html.DisplayFor(modelItem => item.NewPrice)
+            </td>
+                    }
+                }
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                <img src="~/images/@item.photo" width="60" height="70" />
+
+
+            </td>
+            <td>
+                <a asp-action="edit" asp-route-id=@item.Id><i class="fa fa-edit "></i></a> |
+                <a asp-action="Details" asp-route-id=@item.Id><i class="fa fa-info"></i></a> |
+                <a asp-action="Delete" asp-route-id=@item.Id><i class="fa fa-trash"></i></a>  |
+                <a asp-action="Discount" asp-route-id=@item.Id><i class="far fa-money-bill-alt"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

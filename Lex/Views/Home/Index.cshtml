@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Product>
+<script>
+    $(document).ready(function () {
+
+    
+
+    })
+
+</script>
+
+<div class="row">
+    @{
+        foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0" id="product_id" style="margin-bottom:15px;">
+                <!-- Card-->
+                <div class="card rounded shadow-sm border-0" id="product_card" onmouseover="change_background_color()">
+                        <div class="card-body p-4">
+                            <img src="~/images/@item.photo" alt="" height="150" class="productphoto">
+                            <h5> <a class="Productnamelink text-light3" asp-action="product_details" asp-route-id=@item.Id asp-controller="Home" style="font-size:16px;">@item.Name</a></h5>
+                            @{if (item.NewPrice == 0)
+                                { <p class="small text-muted font-italic" style="font-size:14px;">$@item.Price</p>}
+                                else
+                                {
+
+                                    int discount_precent = Convert.ToInt32((item.Price - item.NewPrice) / (item.Price) * 100);
+
+
+                                <p class="small text-muted font-italic" style="font-size:14px;">$@item.NewPrice</p>
+                            
+                                <p class="small text-muted font-italic " style=" font-size:14px;"><span style="text-decoration:line-through;">$@item.Price</span> &nbsp; &nbsp;&nbsp;  <span style="text-decoration:none;font-weight: 600; font-family: inherit; color:#f68b1e; font-size:14px;">- @discount_precent %</span></p>
+                            }
+
+                            }
+                            <ul class="list-inline small">
+                                @{int c = 0;
+                                    for (int i = 0; i < 5; i++)
+                                    {
+                                        if (item.Rate > c)
+                                        {
+                                            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                        }
+                                        else
+                                        {
+                                            <li class="list-inline-item m-0"><i class="fa fa-star-o text-success"></i></li>
+                                        }
+                                        c++;
+                                    }
+                                }
+                            </ul>
+                            <form asp-action="AddtoCard" method="post">
+                                <input  type="hidden" name="ProductId" value="@item.Id"/>
+                                <button data-submit="" id="btnaddtocart" class="add btn _prim _sm">Add To Cart</button>
+                            </form>
+                        </div>
+                </div>
+            </div>
+
+        }
+
+
+    }
+</div>
+<partial name="category_list_partial" />
